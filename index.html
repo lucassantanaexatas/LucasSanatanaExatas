@@ -81,6 +81,7 @@
         </div>
     </footer>
 
+    <!-- Modal Admin -->
     <div id="adminModal" class="modal hidden">
         <div class="modal-content">
             <span class="close-btn" onclick="AdminPanel.fechar()">&times;</span>
@@ -110,9 +111,19 @@
         </div>
     </div>
 
+    <!-- Modal Zoom Imagem -->
     <div id="modal-imagem" class="modal-zoom" onclick="fecharModal()">
         <span class="fechar-modal">&times;</span>
-        <img class="modal-conteudo-img" id="img-full">
+        <div class="zoom-container" onclick="event.stopPropagation()">
+            <img class="modal-conteudo-img" id="img-full">
+            <div class="zoom-controls">
+                <button class="zoom-btn" onclick="alterarZoom(-0.25)" title="Diminuir zoom">&#8722;</button>
+                <span id="zoom-label">100%</span>
+                <button class="zoom-btn" onclick="alterarZoom(0.25)" title="Aumentar zoom">&#43;</button>
+                <button class="zoom-btn zoom-fit" onclick="resetarZoom()" title="Ajustar à tela">⊡</button>
+                <button class="zoom-btn zoom-close" onclick="fecharModal()" title="Fechar">&#10005;</button>
+            </div>
+        </div>
     </div>
 
     <script src="admin.js"></script>

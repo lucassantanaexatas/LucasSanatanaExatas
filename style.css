@@ -135,7 +135,8 @@ body {
 
 /* --- Seção de Compra (CTA) e Galeria --- */
 .cta-section {
-    background-color: #fff;
+    /* CORREÇÃO: fundo branco puro para as imagens aparecerem corretamente */
+    background-color: #ffffff;
     padding: 100px 0;
     text-align: center;
     border-top: 1px solid #e0e0e0;
@@ -156,6 +157,11 @@ body {
     align-items: center;
     justify-content: center;
     margin-bottom: 50px;
+    /* CORREÇÃO: fundo branco na área da galeria */
+    background-color: #f8f9fa;
+    border-radius: 16px;
+    padding: 10px 50px;
+    border: 1px solid #e8e8e8;
 }
 
 .preview-gallery {
@@ -164,25 +170,33 @@ body {
     overflow-x: auto;
     padding: 20px 0;
     scroll-behavior: smooth;
-    -ms-overflow-style: none; /* Esconde barra no IE e Edge */
-    scrollbar-width: none; /* Esconde barra no Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    /* CORREÇÃO: fundo branco na galeria */
+    background-color: #f8f9fa;
 }
 .preview-gallery::-webkit-scrollbar {
-    display: none; /* Esconde barra no Chrome, Safari e Opera */
+    display: none;
 }
 
 .preview-img {
     flex: 0 0 auto;
     width: 350px;
     border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    /* CORREÇÃO: sombra mais suave, sem fundo escuro */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
     cursor: zoom-in;
-    transition: transform 0.3s ease, filter 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     user-select: none;
+    /* CORREÇÃO: garante que a imagem renderize com fundo branco */
+    background-color: #ffffff;
+    /* CORREÇÃO: imagens de texto ficam mais nítidas com este filtro */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
 }
 .preview-img:hover {
     transform: scale(1.03);
-    filter: brightness(1.05);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
 }
 
 /* Setinhas */
@@ -190,7 +204,7 @@ body {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(11, 34, 101, 0.7);
+    background: rgba(11, 34, 101, 0.85);
     color: white;
     border: none;
     width: 45px;
@@ -203,13 +217,14 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 .nav-btn:hover {
     background: rgba(11, 34, 101, 1);
-    scale: 1.1;
+    transform: translateY(-50%) scale(1.1);
 }
-.prev { left: -25px; }
-.next { right: -25px; }
+.prev { left: 5px; }
+.next { right: 5px; }
 
 /* Preço e Botão Final */
 .price-box {
@@ -243,8 +258,8 @@ footer {
     text-decoration: underline;
 }
 
-/* --- Modais (Admin e Zoom) --- */
-.modal, .modal-zoom {
+/* --- Modal Admin --- */
+.modal {
     position: fixed;
     top: 0; left: 0; width: 100vw; height: 100vh;
     background: rgba(0,0,0,0.8);
@@ -256,8 +271,6 @@ footer {
 .hidden {
     display: none !important;
 }
-
-/* Conteúdo Modal Admin */
 .modal-content {
     background: #fff;
     padding: 40px;
@@ -269,32 +282,140 @@ footer {
     box-shadow: 0 25px 50px rgba(0,0,0,0.25);
 }
 
-/* Conteúdo Modal Zoom Imagem */
+/* --- Modal Zoom Imagem --- */
 .modal-zoom {
-    display: none; /* Escondido por padrão */
-    background-color: rgba(0, 8, 30, 0.95);
-    cursor: zoom-out;
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background-color: rgba(0, 5, 20, 0.96);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
+
+/* Container recebe o transform de arrastar */
+.zoom-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    will-change: transform;
+    cursor: grab;
+    padding-bottom: 20px;
+    /* transição suave ao soltar */
+    transition: transform 0.05s linear;
+}
+.zoom-container.dragging {
+    cursor: grabbing;
+    transition: none;
+}
+
 .modal-conteudo-img {
-    max-width: 90%;
-    max-height: 90vh;
+    display: block;
+    /* largura base; JS ajusta conforme nível de zoom */
+    width: 85vw;
+    height: auto;
+    max-height: none;
+    max-width: none;
     border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    animation: zoomAnim 0.3s ease;
+    box-shadow: 0 0 40px rgba(0,0,0,0.6);
+    animation: zoomAnim 0.25s ease;
+    image-rendering: -webkit-optimize-contrast;
+    user-select: none;
+    -webkit-user-drag: none;
+    /* cliques passam ao container para o arrastar */
+    pointer-events: none;
 }
-.close-btn, .fechar-modal {
+
+/* Barra de controles de zoom */
+.zoom-controls {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #1a1a2e;
+    border: 2px solid #fca311;
+    padding: 10px 20px;
+    border-radius: 50px;
+    z-index: 10001;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+}
+
+#zoom-label {
+    color: #fca311;
+    font-size: 1rem;
+    font-weight: bold;
+    min-width: 52px;
+    text-align: center;
+    font-family: var(--font-main);
+}
+
+.zoom-btn {
+    background: #0b2265;
+    color: #ffffff;
+    border: 2px solid #fca311;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.3rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.1s;
+    line-height: 1;
+}
+.zoom-btn:hover {
+    background: #fca311;
+    color: #0b2265;
+    transform: scale(1.1);
+}
+.zoom-fit {
+    font-size: 1rem;
+}
+.zoom-close {
+    background: #c0392b;
+    border-color: #e74c3c;
+    margin-left: 6px;
+}
+.zoom-close:hover {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.fechar-modal {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    font-size: 2.5rem;
+    cursor: pointer;
+    color: rgba(255,255,255,0.7);
+    z-index: 10002;
+    line-height: 1;
+    transition: color 0.2s;
+}
+.fechar-modal:hover {
+    color: #fff;
+}
+
+.close-btn {
     position: absolute;
     top: 15px;
     right: 25px;
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     cursor: pointer;
-    color: #fff;
+    color: #888;
 }
-.close-btn { color: #888; font-size: 1.8rem; } /* Fechar do Admin é menor/cinza */
 
 @keyframes zoomAnim {
-    from {transform: scale(0.8); opacity: 0;}
-    to {transform: scale(1); opacity: 1;}
+    from { transform: scale(0.85); opacity: 0; }
+    to   { transform: scale(1);    opacity: 1; }
 }
 
 /* Inputs Admin */
@@ -348,8 +469,12 @@ footer {
 
 /* --- Mobile Responsivo --- */
 @media (max-width: 768px) {
-    .preview-img { width: 85%; }
-    .nav-btn { width: 35px; height: 35px; }
-    .prev { left: 5px; }
-    .next { right: 5px; }
+    .hero h1 { font-size: 2.2rem; }
+    .preview-wrapper { padding: 10px 40px; }
+    .preview-img { width: 82vw; }
+    .nav-btn { width: 35px; height: 35px; font-size: 1rem; }
+    .prev { left: 2px; }
+    .next { right: 2px; }
+    .modal-conteudo-img { width: 95vw; }
+    .zoom-controls { padding: 8px 14px; gap: 8px; }
 }
