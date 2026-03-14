@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matemática aplicada ao ENEM</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="hero">
+        <div class="container hero-container"> 
+            <img src="LucasBonito.jpg" class="hero-image" alt="Lucas Santana">
+            <div class="hero-content"> 
+                <span class="badge">Novo Lançamento</span>
+                <h1>Gabarite Matemática no ENEM</h1>
+                <p>O acervo completo com todas as questões de matemática desde a criação do exame. Resoluções focadas na metodologia correta, detalhadas passo a passo para você aprender com os seus erros.</p>
+                <a href="#comprar" class="btn-3d">Quero Garantir Meu E-book</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="features container">
+        <h2>Por que este material é diferente?</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="icon">📚</div>
+                <h3>Acervo Completo</h3>
+                <p>Todas as edições do ENEM contempladas, organizadas de forma lógica para otimizar seu tempo de estudo.</p>
+            </div>
+            <div class="card">
+                <div class="icon">🧠</div>
+                <h3>Resoluções Detalhadas</h3>
+                <p>Foco total na metodologia e no processo construtivo da resposta, ideal para quem quer aprofundar de verdade.</p>
+            </div>
+            <div class="card">
+                <div class="icon">📱</div>
+                <h3>Formato PDF Otimizado</h3>
+                <p>Layout limpo e moderno, perfeito para imprimir ou para ler e fazer anotações em qualquer dispositivo.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="comprar" class="cta-section">
+        <div class="container">
+            
+            <h3 class="preview-title">Dê uma olhadinha no conteúdo:</h3>
+            <p class="preview-note">Use as setas ou o scroll do mouse para ver as páginas. Clique na imagem para ampliar.</p>
+            
+            <div class="preview-wrapper">
+                <button class="nav-btn prev" onclick="scrollGaleria(-1)">&#10094;</button>
+                
+                <div class="preview-gallery">
+                    <img src="MATERIAL PREVIA PARA VENDAS_pages-to-jpg-0001.jpg" alt="Página de exemplo 1" class="preview-img" onclick="abrirModal(this.src)">
+                    <img src="MATERIAL PREVIA PARA VENDAS_pages-to-jpg-0002.jpg" alt="Página de exemplo 2" class="preview-img" onclick="abrirModal(this.src)">
+                    <img src="MATERIAL PREVIA PARA VENDAS_pages-to-jpg-0003.jpg" alt="Página de exemplo 3" class="preview-img" onclick="abrirModal(this.src)">
+                    <img src="MATERIAL PREVIA PARA VENDAS_pages-to-jpg-0004.jpg" alt="Página de exemplo 4" class="preview-img" onclick="abrirModal(this.src)">
+                    <img src="MATERIAL PREVIA PARA VENDAS_pages-to-jpg-0005.jpg" alt="Página de exemplo 5" class="preview-img" onclick="abrirModal(this.src)">
+                    <img src="MATERIAL PREVIA PARA VENDAS_pages-to-jpg-0006.jpg" alt="Página de exemplo 6" class="preview-img" onclick="abrirModal(this.src)">
+                    <img src="MATERIAL PREVIA PARA VENDAS_pages-to-jpg-0007.jpg" alt="Página de exemplo 7" class="preview-img" onclick="abrirModal(this.src)">
+                    <img src="MATERIAL PREVIA PARA VENDAS_pages-to-jpg-0008.jpg" alt="Página de exemplo 8" class="preview-img" onclick="abrirModal(this.src)">
+                    <img src="MATERIAL PREVIA PARA VENDAS_pages-to-jpg-0009.jpg" alt="Página de exemplo 9" class="preview-img" onclick="abrirModal(this.src)">
+                    <img src="MATERIAL PREVIA PARA VENDAS_pages-to-jpg-0010.jpg" alt="Página de exemplo 10" class="preview-img" onclick="abrirModal(this.src)">
+                </div>
+
+                <button class="nav-btn next" onclick="scrollGaleria(1)">&#10095;</button>
+            </div>
+            
+            <h2>Pronto para elevar sua nota?</h2>
+            <p>Acesso imediato ao PDF após a confirmação do pagamento.</p>
+            <div class="price-box">
+                <span class="price">R$ 55,00</span>
+                <button class="btn-3d buy-btn" onclick="iniciarCompra()">Comprar Agora</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Preparação ENEM. Todos os direitos reservados.</p>
+            <button id="adminBtn" class="admin-trigger">Acesso Restrito</button>
+        </div>
+    </footer>
+
+    <div id="adminModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn" onclick="AdminPanel.fechar()">&times;</span>
+            <h2>Painel do Administrador</h2>
+            
+            <div id="adminLogin">
+                <p>Insira a senha de acesso:</p>
+                <input type="password" id="adminSenha" placeholder="Senha">
+                <button onclick="AdminPanel.autenticar()" class="btn-admin">Entrar</button>
+            </div>
+
+            <div id="adminDashboard" class="hidden">
+                <h3>Estatísticas de Vendas</h3>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <h4>E-books Vendidos</h4>
+                        <p id="vendasCount">0</p>
+                    </div>
+                    <div class="stat-box">
+                        <h4>Receita Total</h4>
+                        <p>R$ <span id="receitaTotal">0.00</span></p>
+                    </div>
+                </div>
+                <button onclick="AdminPanel.simularVenda()" class="btn-admin">Simular Nova Venda</button>
+                <button onclick="AdminPanel.zerarDados()" class="btn-danger">Zerar Dados</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-imagem" class="modal-zoom" onclick="fecharModal()">
+        <span class="fechar-modal">&times;</span>
+        <img class="modal-conteudo-img" id="img-full">
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
