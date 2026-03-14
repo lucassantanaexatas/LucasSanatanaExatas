@@ -1,3 +1,214 @@
+
+/* ============================================
+   NAVBAR FIXA
+   ============================================ */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9000;
+    background: rgba(11, 34, 101, 0.97);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.35);
+}
+
+.navbar-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 74px;
+}
+
+.navbar-logo {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+.navbar-logo span {
+    color: var(--accent-color);
+}
+
+/* Lista de links */
+.navbar-menu {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+}
+
+/* Link/botão genérico da nav */
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-main);
+    white-space: nowrap;
+}
+.nav-link i {
+    font-size: 1.1rem;
+}
+.nav-link:hover {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+}
+
+/* Botão "Outros Projetos" — destaque */
+.nav-btn-projetos {
+    background: rgba(252, 163, 17, 0.15);
+    border: 1px solid rgba(252, 163, 17, 0.5);
+    color: var(--accent-color) !important;
+}
+.nav-btn-projetos:hover {
+    background: var(--accent-color) !important;
+    color: #0b2265 !important;
+    border-color: var(--accent-color);
+}
+
+/* Ícone hambúrguer (só aparece no mobile) */
+.navbar-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+.navbar-toggle:hover {
+    background: rgba(255,255,255,0.12);
+}
+
+/* Empurra o conteúdo pra baixo da navbar */
+body {
+    padding-top: 74px;
+}
+
+/* ============================================
+   MODAL "EM BREVE"
+   ============================================ */
+.modal-breve {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0, 8, 30, 0.85);
+    z-index: 11000;
+    justify-content: center;
+    align-items: center;
+    animation: fadeInBg 0.2s ease;
+}
+.modal-breve.aberto {
+    display: flex;
+}
+
+.breve-box {
+    background: #fff;
+    border-radius: 20px;
+    padding: 50px 40px 40px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+    animation: zoomAnim 0.25s ease;
+}
+
+.breve-icone {
+    font-size: 3.5rem;
+    margin-bottom: 16px;
+    animation: float 2.5s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-8px); }
+}
+
+.breve-box h2 {
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+.breve-box p {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+.breve-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--accent-color), #f76b1c);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 6px 18px;
+    border-radius: 30px;
+    letter-spacing: 0.5px;
+    margin-bottom: 28px;
+}
+.breve-fechar {
+    width: 100%;
+    font-size: 1rem;
+    padding: 14px;
+}
+
+@keyframes fadeInBg {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* ============================================
+   NAVBAR RESPONSIVO (MOBILE)
+   ============================================ */
+@media (max-width: 768px) {
+    .navbar-toggle {
+        display: block;
+    }
+
+    .navbar-menu {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+        position: absolute;
+        top: 74px;
+        left: 0;
+        width: 100%;
+        background: rgba(11, 34, 101, 0.98);
+        padding: 12px 16px 16px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+    .navbar-menu.aberto {
+        display: flex;
+    }
+
+    .nav-link {
+        padding: 12px 16px;
+        font-size: 1rem;
+        border-radius: 10px;
+    }
+}
+
 /* --- Variáveis Globais --- */
 :root {
     --primary-color: #0b2265;

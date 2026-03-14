@@ -5,8 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matemática aplicada ao ENEM</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Ícones Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
+    <!-- NAVBAR FIXA -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a class="navbar-logo" href="#">Lucas Santana</a>
+
+            <!-- Botão hambúrguer (mobile) -->
+            <button class="navbar-toggle" onclick="toggleMenu()" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <ul class="navbar-menu" id="navbarMenu">
+                <li>
+                    <a href="https://instagram.com/SEU_USUARIO" target="_blank" class="nav-link">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://t.me/SEU_USUARIO" target="_blank" class="nav-link">
+                        <i class="fab fa-telegram"></i>
+                        <span>Telegram</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://lucassantanaexatas.github.io/sobremimLucas/" target="_blank" class="nav-link">
+                        <i class="fas fa-user"></i>
+                        <span>Sobre mim</span>
+                    </a>
+                </li>
+                <li>
+                    <button class="nav-link nav-btn-projetos" onclick="abrirBreve()">
+                        <i class="fas fa-rocket"></i>
+                        <span>Outros Projetos</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Modal "Em Breve" -->
+    <div id="modal-breve" class="modal-breve" onclick="fecharBreve()">
+        <div class="breve-box" onclick="event.stopPropagation()">
+            <div class="breve-icone">🚀</div>
+            <h2>Outros Projetos</h2>
+            <p>Novos projetos incríveis estão chegando em breve!</p>
+            <span class="breve-badge">Disponível em breve</span>
+            <button class="btn-3d breve-fechar" onclick="fecharBreve()">OK, aguardo!</button>
+        </div>
+    </div>
+
     <header class="hero">
         <div class="container hero-container"> 
             <img src="LucasBonito.jpg" class="hero-image" alt="Lucas Santana">

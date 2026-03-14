@@ -1,4 +1,46 @@
 /* ==========================================
+   NAVBAR — MENU MOBILE E MODAL EM BREVE
+   ========================================== */
+
+function toggleMenu() {
+    const menu = document.getElementById('navbarMenu');
+    menu.classList.toggle('aberto');
+}
+
+// Fecha o menu mobile ao clicar em qualquer link
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.navbar-menu .nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            document.getElementById('navbarMenu').classList.remove('aberto');
+        });
+    });
+});
+
+// Fecha menu ao clicar fora
+document.addEventListener('click', (e) => {
+    const menu   = document.getElementById('navbarMenu');
+    const toggle = document.querySelector('.navbar-toggle');
+    if (menu && toggle && !menu.contains(e.target) && !toggle.contains(e.target)) {
+        menu.classList.remove('aberto');
+    }
+});
+
+function abrirBreve() {
+    const modal = document.getElementById('modal-breve');
+    if (modal) modal.classList.add('aberto');
+}
+
+function fecharBreve() {
+    const modal = document.getElementById('modal-breve');
+    if (modal) modal.classList.remove('aberto');
+}
+
+// Fecha modal breve com ESC
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') fecharBreve();
+});
+
+/* ==========================================
    LÓGICA DO USUÁRIO COMUM
    ========================================== */
 function iniciarCompra() {
