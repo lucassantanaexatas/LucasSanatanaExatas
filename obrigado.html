@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra Confirmada! — Lucas Santana</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0b2265;
+            --accent:  #fca311;
+            --neon:    #00e5ff;
+            --bg:      #080c14;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: var(--bg);
+            font-family: 'DM Sans', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        /* Partículas de fundo */
+        .bg-glow {
+            position: fixed;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(0,229,255,0.06), transparent 70%);
+            top: -100px; left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+
+        .card {
+            background: #0d1220;
+            border: 1px solid rgba(0,229,255,0.15);
+            border-radius: 24px;
+            padding: 56px 48px;
+            max-width: 520px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,229,255,0.05);
+            animation: slideUp 0.5s ease;
+        }
+        @keyframes slideUp {
+            from { opacity:0; transform: translateY(30px); }
+            to   { opacity:1; transform: translateY(0); }
+        }
+
+        /* Ícone de sucesso animado */
+        .success-icon {
+            width: 88px; height: 88px;
+            background: rgba(0,229,255,0.08);
+            border: 2px solid rgba(0,229,255,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 28px;
+            font-size: 2.2rem;
+            color: var(--neon);
+            animation: popIn 0.5s 0.2s both;
+        }
+        @keyframes popIn {
+            from { transform: scale(0); opacity:0; }
+            to   { transform: scale(1); opacity:1; }
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(0,229,255,0.08);
+            border: 1px solid rgba(0,229,255,0.2);
+            color: var(--neon);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .sub {
+            color: #8892a4;
+            font-size: 1rem;
+            line-height: 1.7;
+            font-weight: 300;
+            margin-bottom: 32px;
+        }
+
+        /* Caixa de aviso do e-mail */
+        .email-box {
+            background: rgba(252,163,17,0.07);
+            border: 1px solid rgba(252,163,17,0.25);
+            border-radius: 14px;
+            padding: 20px 24px;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            text-align: left;
+        }
+        .email-box i {
+            color: var(--accent);
+            font-size: 1.4rem;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        .email-box p {
+            color: #c8a96e;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .email-box p strong {
+            color: var(--accent);
+        }
+
+        /* Steps */
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 36px;
+            text-align: left;
+        }
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 10px;
+            padding: 12px 16px;
+        }
+        .step-num {
+            width: 28px; height: 28px;
+            background: rgba(0,229,255,0.1);
+            border: 1px solid rgba(0,229,255,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--neon);
+            flex-shrink: 0;
+        }
+        .step p {
+            color: #8892a4;
+            font-size: 0.88rem;
+            line-height: 1.4;
+        }
+        .step p strong { color: #e8eaf0; }
+
+        .btn-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            background: var(--neon);
+            color: var(--bg);
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: box-shadow 0.2s, transform 0.15s;
+            box-shadow: 0 0 0 rgba(0,229,255,0);
+        }
+        .btn-home:hover {
+            box-shadow: 0 0 24px rgba(0,229,255,0.4);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 560px) {
+            .card { padding: 40px 24px; }
+            h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-glow"></div>
+
+    <div class="card">
+        <div class="success-icon">
+            <i class="fas fa-check"></i>
+        </div>
+
+        <div class="tag">✅ Pagamento confirmado</div>
+
+        <h1>E-book a caminho!</h1>
+        <p class="sub">
+            Seu pagamento foi aprovado com sucesso.<br>
+            O PDF será enviado para o seu e-mail em instantes.
+        </p>
+
+        <div class="email-box">
+            <i class="fas fa-envelope"></i>
+            <p>
+                Verifique sua <strong>caixa de entrada</strong> e também a pasta
+                <strong>spam ou promoções</strong> — às vezes o e-mail cai por lá.
+                O envio é automático e acontece em até <strong>5 minutos</strong>.
+            </p>
+        </div>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <p>Abra o e-mail com assunto <strong>"Seu e-book chegou!"</strong></p>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <p>Baixe o <strong>PDF em anexo</strong> para o seu dispositivo</p>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <p>Salve offline e <strong>bons estudos!</strong> 🚀</p>
+            </div>
+        </div>
+
+        <a href="index.html" class="btn-home">
+            <i class="fas fa-home"></i> Voltar ao início
+        </a>
+    </div>
+</body>
+</html>
