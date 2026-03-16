@@ -284,7 +284,14 @@ document.getElementById('modal-imagem')?.addEventListener('wheel', (e) => {
 const AdminPanel = {
     senhaCorreta: 'fg@2000',
     precoEbook: 55.00,
-    dadosVendas: 0,
+
+    // Carrega do localStorage ou começa do zero
+    get dadosVendas() {
+        return parseInt(localStorage.getItem('ls_vendas') || '0');
+    },
+    set dadosVendas(val) {
+        localStorage.setItem('ls_vendas', val);
+    },
 
     modal: null,
     loginView: null,
@@ -332,8 +339,8 @@ const AdminPanel = {
         }
     },
 
-    simularVenda() {
-        this.dadosVendas++;
+    registrarVenda() {
+        this.dadosVendas = this.dadosVendas + 1;
         this.atualizarInterface();
     },
 
