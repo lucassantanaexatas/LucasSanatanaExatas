@@ -703,6 +703,7 @@ footer {
     justify-content: center;
     align-items: center;
     padding: 20px;
+    overflow-y: auto;
 }
 
 .pix-box {
@@ -715,6 +716,10 @@ footer {
     box-shadow: 0 30px 60px rgba(0,0,0,0.3);
     position: relative;
     animation: zoomAnim 0.25s ease;
+    /* Limita altura e adiciona scroll se necessário */
+    max-height: 90vh;
+    overflow-y: auto;
+    margin: auto;
 }
 
 .pix-fechar {
@@ -851,4 +856,20 @@ footer {
 @media (max-width: 480px) {
     .pix-box { padding: 36px 20px 28px; }
     #chave-pix-texto { font-size: 0.75rem; }
+}
+
+/* Aviso de tempo de entrega */
+.entrega-aviso {
+    color: #888;
+    font-size: 0.85rem;
+    margin-top: 12px;
+    text-align: center;
+}
+
+/* Aviso de entrega dentro do modal Pix */
+.pix-entrega-aviso {
+    color: #888;
+    font-size: 0.82rem;
+    text-align: center;
+    margin-bottom: 16px;
 }
