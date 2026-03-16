@@ -873,3 +873,42 @@ footer {
     text-align: center;
     margin-bottom: 16px;
 }
+
+/* Labels de atendimento no modal Pix */
+.pix-atendimento-titulo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #fff;
+    background: var(--primary-color);
+    padding: 7px 16px;
+    border-radius: 30px;
+    text-align: center;
+    margin: 8px auto 16px;
+    width: fit-content;
+    letter-spacing: 0.5px;
+}
+.pix-opcao-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #999;
+    text-align: center;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.pix-opcao-rapido {
+    color: #e67e00;
+    margin-top: 16px;
+}
+.pix-telegram-btn2 {
+    background: #1a7abf;
+    box-shadow: 0 4px 14px rgba(26,122,191,0.3);
+}
+.pix-telegram-btn2:hover {
+    background: #155f96;
+    box-shadow: 0 6px 20px rgba(26,122,191,0.4);
+}
