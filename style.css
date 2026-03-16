@@ -689,3 +689,166 @@ footer {
     .modal-conteudo-img { width: 95vw; }
     .zoom-controls { padding: 8px 14px; gap: 8px; }
 }
+
+/* ============================================
+   MODAL PIX
+   ============================================ */
+.modal-pix {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0, 8, 30, 0.88);
+    z-index: 11000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.pix-box {
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px 36px 36px;
+    max-width: 440px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+    position: relative;
+    animation: zoomAnim 0.25s ease;
+}
+
+.pix-fechar {
+    position: absolute;
+    top: 14px; right: 18px;
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.pix-fechar:hover { color: #333; }
+
+.pix-header { margin-bottom: 24px; }
+.pix-icon { font-size: 2.8rem; margin-bottom: 10px; }
+.pix-header h2 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 6px;
+}
+.pix-header p { color: #666; font-size: 0.9rem; }
+
+.pix-valor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f0f4ff;
+    border-radius: 10px;
+    padding: 12px 18px;
+    margin-bottom: 20px;
+}
+.pix-valor span { color: #666; font-size: 0.9rem; }
+.pix-valor strong {
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    font-weight: 800;
+}
+
+.pix-chave-label {
+    text-align: left;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.pix-chave-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f8f9fa;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 6px;
+}
+#chave-pix-texto {
+    flex: 1;
+    font-size: 0.82rem;
+    color: #333;
+    word-break: break-all;
+    text-align: left;
+    font-family: monospace;
+}
+.pix-copiar-btn {
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s, transform 0.1s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.pix-copiar-btn:hover { background: #0a1d55; }
+.pix-copiar-btn.copiado { background: #27ae60; }
+
+.pix-copiado {
+    font-size: 0.82rem;
+    color: #27ae60;
+    font-weight: 600;
+    margin-bottom: 16px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    min-height: 18px;
+}
+
+.pix-aviso {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: #fff8e1;
+    border: 1px solid #ffe082;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+.pix-aviso i { color: #f59e0b; font-size: 1.1rem; margin-top: 2px; flex-shrink: 0; }
+.pix-aviso p { color: #555; font-size: 0.88rem; line-height: 1.5; margin: 0; }
+.pix-aviso p strong { color: #333; }
+
+.pix-telegram-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px;
+    background: #229ed9;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+    box-shadow: 0 4px 14px rgba(34,158,217,0.3);
+}
+.pix-telegram-btn:hover {
+    background: #1a8cbf;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(34,158,217,0.4);
+}
+.pix-telegram-btn i { font-size: 1.2rem; }
+
+@media (max-width: 480px) {
+    .pix-box { padding: 36px 20px 28px; }
+    #chave-pix-texto { font-size: 0.75rem; }
+}

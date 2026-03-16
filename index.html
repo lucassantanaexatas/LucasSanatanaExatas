@@ -133,6 +133,48 @@
         </div>
     </footer>
 
+
+    <!-- Modal Pix -->
+    <div id="modal-pix" class="modal-pix" onclick="fecharPix()">
+        <div class="pix-box" onclick="event.stopPropagation()">
+            <button class="pix-fechar" onclick="fecharPix()">&#10005;</button>
+
+            <!-- Cabeçalho -->
+            <div class="pix-header">
+                <div class="pix-icon">💠</div>
+                <h2>Pagar com Pix</h2>
+                <p>Copie a chave abaixo e realize o pagamento</p>
+            </div>
+
+            <!-- Valor -->
+            <div class="pix-valor">
+                <span>Valor</span>
+                <strong>R$ 55,00</strong>
+            </div>
+
+            <!-- Chave Pix -->
+            <div class="pix-chave-label">Chave Pix (EVP)</div>
+            <div class="pix-chave-box">
+                <span id="chave-pix-texto">4f1c2dd1-6e0e-4cd7-9623-34c7eb614d3f</span>
+                <button class="pix-copiar-btn" onclick="copiarChave()" id="btn-copiar">
+                    <i class="fas fa-copy"></i> Copiar
+                </button>
+            </div>
+            <div id="pix-copiado" class="pix-copiado">✅ Chave copiada!</div>
+
+            <!-- Aviso -->
+            <div class="pix-aviso">
+                <i class="fas fa-info-circle"></i>
+                <p>Após realizar o pagamento, envie o <strong>comprovante</strong> pelo Telegram para receber o e-book imediatamente.</p>
+            </div>
+
+            <!-- Botão Telegram -->
+            <a href="https://t.me/lucassantanaexatas" target="_blank" class="pix-telegram-btn">
+                <i class="fab fa-telegram"></i> Enviar comprovante no Telegram
+            </a>
+        </div>
+    </div>
+
     <!-- Modal Admin -->
     <div id="adminModal" class="modal hidden">
         <div class="modal-content">
@@ -179,5 +221,46 @@
     </div>
 
     <script src="admin.js"></script>
+
+    <script>
+        function iniciarCompra() {
+            const modal = document.getElementById('modal-pix');
+            if (modal) {
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                // Reseta estado do botão copiar
+                document.getElementById('pix-copiado').style.opacity = '0';
+                document.getElementById('btn-copiar').innerHTML = '<i class="fas fa-copy"></i> Copiar';
+                document.getElementById('btn-copiar').classList.remove('copiado');
+            }
+        }
+        function fecharPix() {
+            const modal = document.getElementById('modal-pix');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+        function copiarChave() {
+            const chave = document.getElementById('chave-pix-texto').textContent;
+            navigator.clipboard.writeText(chave).then(() => {
+                const btn = document.getElementById('btn-copiar');
+                const aviso = document.getElementById('pix-copiado');
+                btn.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+                btn.classList.add('copiado');
+                aviso.style.opacity = '1';
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-copy"></i> Copiar';
+                    btn.classList.remove('copiado');
+                    aviso.style.opacity = '0';
+                }, 3000);
+            });
+        }
+        // Fecha com ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') fecharPix();
+        });
+    </script>
+
 </body>
 </html>
